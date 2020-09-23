@@ -1,0 +1,8 @@
+features/lib/data/.env.wordpress
+
+.txt
+.temp
+.idea/
+.idea
+
+venv/
