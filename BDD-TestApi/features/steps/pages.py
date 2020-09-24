@@ -38,7 +38,7 @@ def make_request(context):
 
     response = requests.post(context.url, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
     context.page_data = response.json()
-    context.id_page = context.page_data["id"]
+    context.page_id = context.page_data["id"]
     context.code = response.status_code
 
 
@@ -51,7 +51,7 @@ def confirm_status(context):
 @given("Se establecen los parametros necesarios para recuperar la pagina\.")
 def parameters_page_retrieve(context):
     context.payload = {}
-    context.url = context.url_base+'/wp-json/wp/v2/pages/'+str(context.id_page)
+    context.url = context.url_base+'/wp-json/wp/v2/pages/'+str(context.page_id)
 
 
 @when("Se recupera la página con una petición GET\.")
@@ -88,7 +88,7 @@ def parameters_update_page(context):
     author = params.author()
     comment_status = params.comment_status()
     ping_status = params.ping_status()
-    context.url_put = (context.url_base + '/wp-json/wp/v2/pages/'+str(context.id_page)+'?content=' + content + '&title=' + title + '&excerpt=' + excerpt + '&status=' +
+    context.url_put = (context.url_base + '/wp-json/wp/v2/pages/'+str(context.page_id)+'?content=' + content + '&title=' + title + '&excerpt=' + excerpt + '&status=' +
                    status + '&author=' + author + '&comment_status=' + comment_status + '&ping_status=' + ping_status)
 
 
@@ -135,7 +135,7 @@ def confirm_data_update(context):
 def parameters_delete_page(context):
 
     context.payload = {}
-    context.url = context.url_base + '/wp-json/wp/v2/pages/' + str(context.id_page) + '?force=1'
+    context.url = context.url_base + '/wp-json/wp/v2/pages/' + str(context.page_id) + '?force=1'
 
 
 @when("Se elimina la página con una petición DELETE\.")
@@ -157,7 +157,7 @@ def confirm_deleted_page_status(context):
 def retrieve_deleted_page(context):
 
     context.payload = {}
-    context.url = context.url_base + '/wp-json/wp/v2/pages/' + str(context.id_page)
+    context.url = context.url_base + '/wp-json/wp/v2/pages/' + str(context.page_id)
 
     response = requests.get(context.url, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
     context.page_delete = response.json()

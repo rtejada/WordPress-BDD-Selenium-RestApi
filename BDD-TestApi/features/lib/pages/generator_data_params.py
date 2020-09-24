@@ -24,8 +24,12 @@ class GeneratorDataParameters(GeneratorRamdomData):
 
         return self.data_parameters["excerpt"] + self.random_lowercase(20)
 
-    def slug(self):
-        return self.data_parameters["slug"]
+    def description(self):
+        return self.random_letters(100)
+
+    def name(self):
+
+        return self.random_name(15)
 
     def status(self):
 
@@ -40,5 +44,3 @@ class GeneratorDataParameters(GeneratorRamdomData):
     def ping_status(self):
         return self.data_parameters["ping_status"]
 
-prueba=GeneratorDataParameters()
-print(prueba.content())
