@@ -15,6 +15,8 @@ def authentication(context):
     context.password = os.getenv('PASSWORD')
     url_base = os.getenv('URL_BASE')
     context.url_base = url_base
+    print("user os", context.user)
+    print("password os", context.password)
 
 
 @step("Se establecen los parametros necesarios para Crear la Página\.")
