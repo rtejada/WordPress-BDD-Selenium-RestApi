@@ -7,6 +7,7 @@ class GeneratorDataParameters(GeneratorRamdomData):
 
     def __init__(self):
 
+        print(os.getcwd())
         self.data_parameters = ''
         with open(os.getcwd() + "/BDD-TestApi/features/lib/data/key_params.json") as file:
             self.data_parameters = json.load(file)
