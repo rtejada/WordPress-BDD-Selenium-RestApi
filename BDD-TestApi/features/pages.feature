@@ -23,3 +23,9 @@ Feature: Gestionar Páginas en Wordpress
     And  Se recupera página con petición GET
     And  Se confirman datos de la página actualizada
 
+  Scenario: Eliminar Pagina.
+    Given Se establecen parametros para eliminar la pagina.
+    When Se elimina la página con una petición DELETE.
+    Then Se Confirma el estado 200 Borrado.
+    And  Con petición GET se prueba a recuperar página eliminida
+    And  Se Confirma el estado 404 No encontrado.

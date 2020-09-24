@@ -1,8 +1,9 @@
-features/lib/data/.env.wordpress
+BDD-TestApi/features/lib/data/.env.wordpress
 
 .txt
 .temp
 .idea/
 .idea
+.xml
 
 venv/
