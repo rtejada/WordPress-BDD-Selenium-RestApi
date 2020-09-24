@@ -38,6 +38,8 @@ def make_request(context):
 
     response = requests.post(context.url, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
     context.page_data = response.json()
+    print(response.status_code)
+    print(response.json())
     context.id_page = context.page_data["id"]
     context.code = response.status_code
 
