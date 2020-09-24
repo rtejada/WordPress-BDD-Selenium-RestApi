@@ -11,12 +11,10 @@ use_step_matcher("re")
 def authentication(context):
 
     load_dotenv(os.getcwd() + "/BDD-TestApi/features/lib/data/.env.wordpress")
-    context.user = os.getenv('USER')
-    context.password = os.getenv('PASSWORD')
+    context.user = os.getenv('USER_API')
+    context.password = os.getenv('PASS_API')
     url_base = os.getenv('URL_BASE')
     context.url_base = url_base
-    print("user os", context.user)
-    print("password os", context.password)
 
 
 @step("Se establecen los parametros necesarios para Crear la Página\.")
@@ -40,8 +38,6 @@ def make_request(context):
 
     response = requests.post(context.url, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
     context.page_data = response.json()
-    print(response.status_code)
-    print(response.json())
     context.id_page = context.page_data["id"]
     context.code = response.status_code
 
