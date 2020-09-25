@@ -20,8 +20,9 @@ Feature: Gestionar Categorías en Wordpress
     Given Se establece el parametro para actualizar la Categoría.
     When Se actualiza Categoría con una petición PUT.
     Then Se Confirma estado 200 (Categoría actualizada).
-    And  Se recupera Categoría con petición GET
-    And  Se confirma datos de la categoría actualizada
+    And  Se establece paramentros para recuperar Categoría actualizada.
+    And  Se realiza petición GET.
+    And  Se confirma datos de la categoría actualizada.
 
   Scenario: Eliminar Categoría.
     Given Se establece parametros para eliminar la Categoría.

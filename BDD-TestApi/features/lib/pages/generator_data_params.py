@@ -1,6 +1,7 @@
 import os
 import json
 from lib.pages.generator_random_data import GeneratorRamdomData
+from random import randint
 
 
 class GeneratorDataParameters(GeneratorRamdomData):
@@ -29,7 +30,7 @@ class GeneratorDataParameters(GeneratorRamdomData):
 
     def name(self):
 
-        return self.random_name(15)
+        return self.random_name(10)+'-'+str(randint(1, 500))
 
     def status(self):
 
