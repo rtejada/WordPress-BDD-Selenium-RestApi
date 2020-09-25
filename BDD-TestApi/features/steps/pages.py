@@ -29,7 +29,7 @@ def parameters_create_page(context):
     comment_status = params.comment_status()
     ping_status = params.ping_status()
     context.payload = {}
-    context.url = (context.url_base+'/wp-json/wp/v2/pages?content='+content+'&title='+title+'&excerpt='+excerpt+'&status='+
+    context.url = (context.url_base+'pages?content='+content+'&title='+title+'&excerpt='+excerpt+'&status='+
                    status+'&author='+author+'&comment_status='+comment_status+'&ping_status='+ping_status)
 
 
@@ -51,7 +51,7 @@ def confirm_status(context):
 @given("Se establecen los parametros necesarios para recuperar la pagina\.")
 def parameters_page_retrieve(context):
     context.payload = {}
-    context.url = context.url_base+'/wp-json/wp/v2/pages/'+str(context.page_id)
+    context.url = context.url_base+'pages/'+str(context.page_id)
 
 
 @when("Se recupera la página con una petición GET\.")
@@ -88,14 +88,14 @@ def parameters_update_page(context):
     author = params.author()
     comment_status = params.comment_status()
     ping_status = params.ping_status()
-    context.url_put = (context.url_base + '/wp-json/wp/v2/pages/'+str(context.page_id)+'?content=' + content + '&title=' + title + '&excerpt=' + excerpt + '&status=' +
-                   status + '&author=' + author + '&comment_status=' + comment_status + '&ping_status=' + ping_status)
+    context.url = (context.url_base+'pages/'+str(context.page_id)+'?content='+content+'&title='+title+'&excerpt='+
+                       excerpt+'&status='+status+'&author='+author+'&comment_status='+comment_status+'&ping_status='+ping_status)
 
 
 @when("Se actualiza la página con una petición PUT\.")
 def update_page(context):
 
-    response = requests.put(context.url_put, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
+    response = requests.put(context.url, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
     context.page_put = response.json()
     context.id_page_put = context.page_put["id"]
     context.code_put = response.status_code
@@ -110,7 +110,7 @@ def confirm_status(context):
 @step("Se recupera página con petición GET")
 def parameters_retrieve_page(context):
     context.payload = {}
-    context.url = context.url_base + '/wp-json/wp/v2/pages/' + str(context.id_page_put)
+    context.url = context.url_base+'pages/'+ str(context.id_page_put)
 
     response = requests.get(context.url, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
     context.page_put_retrieve = response.json()
@@ -135,7 +135,7 @@ def confirm_data_update(context):
 def parameters_delete_page(context):
 
     context.payload = {}
-    context.url = context.url_base + '/wp-json/wp/v2/pages/' + str(context.page_id) + '?force=1'
+    context.url = context.url_base+'pages/'+str(context.page_id)+'?force=1'
 
 
 @when("Se elimina la página con una petición DELETE\.")
@@ -157,7 +157,7 @@ def confirm_deleted_page_status(context):
 def retrieve_deleted_page(context):
 
     context.payload = {}
-    context.url = context.url_base + '/wp-json/wp/v2/pages/' + str(context.page_id)
+    context.url = context.url_base+'pages/'+str(context.page_id)
 
     response = requests.get(context.url, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
     context.page_delete = response.json()

@@ -32,8 +32,7 @@ class GeneratorRamdomData:
 
 
 
-p = GeneratorRamdomData()
-print(p.random_letters(120))
+
 
 
 

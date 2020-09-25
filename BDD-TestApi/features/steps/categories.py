@@ -25,7 +25,7 @@ def parameters_create_page(context):
     description = params.description()
     name = params.name()
     context.payload = {}
-    context.url = (context.url_base+'/wp-json/wp/v2/categories?name='+name+'&description='+description)
+    context.url = (context.url_base+'categories?name='+name+'&description='+description)
 
 
 @when("Se realiza una petición POST\.")
@@ -46,7 +46,7 @@ def confirm_status(context):
 @given("Se establece el parametro necesario para recuperar la categoria\.")
 def parameters_recover_category(context):
     context.payload = {}
-    context.url = context.url_base+'/wp-json/wp/v2/categories/'+str(context.category_id)
+    context.url = context.url_base+'categories/'+str(context.category_id)
 
 
 @when("Se recupera la Categoría con una petición GET\.")
@@ -75,7 +75,7 @@ def parameters_update_category(context):
     description = params.description()
     name = params.name()
     context.payload = {}
-    context.url_update = (context.url_base+'/wp-json/wp/v2/categories/'+str(context.category_id)+'?name='+name+'&description='+description)
+    context.url_update = (context.url_base+'categories/'+str(context.category_id)+'?name='+name+'&description='+description)
 
 
 @when("Se actualiza Categoría con una petición PUT\.")
@@ -95,7 +95,7 @@ def confirm_updated_category(context):
 @step("Se establece paramentros para recuperar Categoría actualizada\.")
 def parameters_retrieve_updated_category(context):
     context.payload = {}
-    context.url = context.url_base + '/wp-json/wp/v2/categories/' + str(context.category_id)
+    context.url = context.url_base + 'categories/' + str(context.category_id)
 
 
 @step("Se realiza petición GET\.")
@@ -120,7 +120,7 @@ def confirm_updated_category(context):
 @given("Se establece parametros para eliminar la Categoría\.")
 def parameter_deleted_category(context):
     context.payload = {}
-    context.url = context.url_base + '/wp-json/wp/v2/categories/' + str(context.category_id) + '?force=1'
+    context.url = context.url_base + 'categories/' + str(context.category_id) + '?force=1'
 
 
 @when("Se elimina Categoría con una petición DELETE\.")
@@ -142,7 +142,7 @@ def confirm_data_deleted_category(context):
 def retrieve_deleted_category(context):
 
     context.payload = {}
-    context.url = context.url_base + '/wp-json/wp/v2/categories/' + str(context.category_id)
+    context.url = context.url_base + 'categories/' + str(context.category_id)
     response = requests.get(context.url, auth=HTTPBasicAuth(context.user, context.password), data=context.payload)
     context.category_recovered = response.json()
     context.code_category = response.status_code
