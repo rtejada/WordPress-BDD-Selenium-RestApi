@@ -30,7 +30,7 @@ class GeneratorDataParameters(GeneratorRamdomData):
 
     def name(self):
 
-        return self.random_name(10)+'-'+str(randint(1, 500))
+        return self.random_name(8)+'-'+str(randint(1, 500))
 
     def status(self):
 
@@ -44,4 +44,19 @@ class GeneratorDataParameters(GeneratorRamdomData):
 
     def ping_status(self):
         return self.data_parameters["ping_status"]
+
+    def email(self):
+        return self.random_lowercase(5)+'@'+self.random_lowercase(7)+'.es'
+
+    def username(self):
+        return self.random_letters(7)
+
+    def first_name(self):
+        return self.random_name(7)
+
+    def last_name(self):
+        return self.random_name(5)
+
+    def password(self):
+        return self.guid_let()
 
