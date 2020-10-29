@@ -14,12 +14,19 @@ def load_arguments(context):
 
     load_dotenv(os.getcwd() + "/BDD-Selenium/features/lib/data/.env.wordpress")
 
+    #carga opciones de google chrome.
     arguments = os.getenv('CHROME_ARGS')
     args = arguments.split(";")
     options = Options()
     for i in args:
         options.add_argument(i)
     context.driver = webdriver.Chrome(options=options)
+
+    #carga conección Api.
+    context.user = os.getenv('USER_API')
+    context.password = os.getenv('PASS_API')
+    url_base = os.getenv('URL_BASE')
+    context.url_base = url_base
 
 
 @step("Inicia sesion en la web\.")
