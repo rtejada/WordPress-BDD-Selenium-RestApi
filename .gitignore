@@ -1,4 +1,5 @@
 BDD-TestApi/features/lib/data/.env.wordpress
+BDD-Selenium/features/lib/data/.env.wordpress
 
 .txt
 .temp
