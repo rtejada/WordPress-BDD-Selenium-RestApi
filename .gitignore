@@ -1,5 +1,6 @@
-
-.env.wordpress
+BDD-TestApi/features/lib/data/.env.wordpress
+BDD-Selenium/features/lib/data/.env.wordpress
+!BDD-Selenium/features/lib/data/.gitkeep
 
 .txt
 .temp
