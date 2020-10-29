@@ -8,4 +8,5 @@ BDD-Selenium/features/lib/data/.env.wordpress
 .idea
 .xml
 
+Pipfile.lock
 venv/
