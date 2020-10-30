@@ -21,6 +21,7 @@ class AddNewUsers(WordPressBasePage):
     TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="wpbody-content"]//table/tbody/tr')
     ROW = '//*[@id="wpbody-content"]//table/tbody/'
     COLUMN = '/td[1]/strong/a'
+    QUERY_RESULTS = ''
 
     def load_user_window(self):
         self.click_button(self.MENU_ICON_USERS)
@@ -55,17 +56,22 @@ class AddNewUsers(WordPressBasePage):
     def confirm_database_added_data(self, user_name):
         search_database = DataBase()
 
-        result = search_database.get_employee_by_id(user_name)
+        self.QUERY_RESULTS = search_database.get_employee_by_id(user_name)
 
-        if result is not None:
+        if self.QUERY_RESULTS is not None:
             try:
-                if user_name in result:
+                if user_name in self.QUERY_RESULTS:
                     return True
 
             except Exception as e:
                 print('Access Error', e)
         else:
             print('The user name does not exist')
+
+    def get_database(self):
+
+        return self.QUERY_RESULTS
+
 
 
 

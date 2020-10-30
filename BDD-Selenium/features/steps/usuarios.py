@@ -4,6 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from lib.pages.login_website import LoginWebsite
 from lib.pages.add_new_users import AddNewUsers
+from requests.auth import HTTPBasicAuth
+import requests
 import os
 
 use_step_matcher("re")
@@ -23,10 +25,9 @@ def load_arguments(context):
     context.driver = webdriver.Chrome(options=options)
 
     #carga conección Api.
-    context.user = os.getenv('USER_API')
-    context.password = os.getenv('PASS_API')
-    url_base = os.getenv('URL_BASE')
-    context.url_base = url_base
+    context.user_api = os.getenv('USER_API')
+    context.password_api = os.getenv('PASS_API')
+    context.url_base = os.getenv('URL_BASE')
 
 
 @step("Inicia sesion en la web\.")
@@ -63,3 +64,19 @@ def confirm_details_added_database(context):
 
     found = context.user.confirm_database_added_data(context.user_name)
     assert found
+
+
+@step("API-Recuperar Usuario Creado con una petición GET\.")
+def recover_user_created_GET_request(context):
+
+    query_results = context.user.get_database()
+
+    context.payload = {}
+    url = context.url_base + 'users/' + str(query_results[0])
+    response = requests.get(url, auth=HTTPBasicAuth(context.user_api, context.password_api), data=context.payload)
+    context.user_data_retrieve = response.json()
+    context.code = response.status_code
+
+    assert context.code == 200
+    assert context.user_data_retrieve["id"] == query_results[0]
+

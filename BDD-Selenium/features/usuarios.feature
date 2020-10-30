@@ -16,6 +16,7 @@ Feature: Gestión de Usuarios en Wordpress
     When Dentro de la opcion, añade los datos del nuevo usuario: <role>, <name>
     Then Confirmar en la WEB los datos del nuevo usuario añadido.
     And Confirmar en la BBDD los datos del nuevo usuario añadido.
+    And API-Recuperar Usuario Creado con una petición GET.
 
     Examples:
     |role|name|
