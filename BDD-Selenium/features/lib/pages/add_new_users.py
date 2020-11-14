@@ -18,8 +18,8 @@ class AddNewUsers(WordPressBasePage):
     CREATE_USER = (By.ID, 'createusersub')
     USER_SEARCH_INPUT = (By.ID, 'user-search-input')
     SEARCH_SUBMIT = (By.ID, 'search-submit')
-    TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="wpbody-content"]//table/tbody/tr')
-    ROW = '//*[@id="wpbody-content"]//table/tbody/'
+    TABLE_ROWS_SELECTOR = (By.XPATH, '//*[@id="the-list"]/tr')
+    ROW = '//*[@id="the-list"]/'
     COLUMN = '/td[1]/strong/a'
     QUERY_RESULTS = ''
 

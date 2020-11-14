@@ -16,7 +16,7 @@ def load_arguments(context):
 
     load_dotenv(os.getcwd() + "/BDD-Selenium/features/lib/data/.env.wordpress")
 
-    #carga opciones de google chrome.
+    #carga argumentos de google chrome.
     arguments = os.getenv('CHROME_ARGS')
     args = arguments.split(";")
     options = Options()
@@ -24,7 +24,7 @@ def load_arguments(context):
         options.add_argument(i)
     context.driver = webdriver.Chrome(options=options)
 
-    #carga conección Api.
+    #carga argumentos - conección Api.
     context.user_api = os.getenv('USER_API')
     context.password_api = os.getenv('PASS_API')
     context.url_base = os.getenv('URL_BASE')
@@ -69,6 +69,9 @@ def confirm_details_added_database(context):
 @step("API-Recuperar Usuario Creado con una petición GET\.")
 def recover_user_created_GET_request(context):
 
+    context.user_api = os.getenv('USER_API')
+    context.password_api = os.getenv('PASS_API')
+    context.url_base = os.getenv('URL_BASE')
     query_results = context.user.get_database()
 
     context.payload = {}
