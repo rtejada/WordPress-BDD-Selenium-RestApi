@@ -14,3 +14,19 @@ Feature: Gestión de Entradas en Wordpress
     When Dentro de la opcion, pulsa y añade los datos de una nueva etiqueta.
     Then Confirma en la WEB los datos de la nueva etiqueta añadida.
 
+  Scenario: Añadir Nueva Categoría.
+    Given Usuario autorizado. Accede al Menú Entradas (Categorias)
+    When Dentro de la opcion, pulsa y añade los datos de una nueva categoría.
+    Then Confirma en la WEB los datos de la nueva categoría añadida.
+
+
+  Scenario Outline: Añadir Nueva Entrada.
+    Given Usuario con perfil autorizado. Accede al Menú Entradas (Nueva Entrada)
+    When Dentro de la opcion, pulsa y añade los datos de una nueva entrada <img>, <categoria>, <etiqueta>.
+    Then Confirma en la WEB los datos de la nueva entrada añadida.
+
+    Examples:
+    |img|categoria|etiqueta|
+    |image1.jpg|CategoriaPadre-18|Etiqueta-1|
+    |image2.jpg|CategoriaHijo-18 |Etiqueta-2|
+
