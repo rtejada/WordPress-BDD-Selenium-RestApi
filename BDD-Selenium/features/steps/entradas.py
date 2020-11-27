@@ -83,19 +83,15 @@ def access_menu_post(context):
     context.entry.entry_access()
 
 
-@when("Dentro de la opcion, pulsa y añade los datos de una nueva entrada (?P<img>.+), (?P<categoria>.+), (?P<etiqueta>.+)\.")
-def step_impl(context, img, categoria, etiqueta):
+@when("Dentro de la opcion, pulsa y añade los datos de una nueva entrada (?P<etiqueta>.+)\.")
+def step_impl(context, etiqueta):
 
-    values = {"img": img, "categoria": categoria, "etiqueta": etiqueta}
-    context.entry.add_new_entry(values)
-
+    context.tag = etiqueta
+    context.entry_name = context.entry.add_new_entry(context.tag)
 
 
 @then("Confirma en la WEB los datos de la nueva entrada añadida\.")
 def confirm_data_added_entry(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
 
-
+    found = context.entry.confirm_entry_data(context.entry_name)
+    assert found

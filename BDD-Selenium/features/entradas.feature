@@ -22,11 +22,11 @@ Feature: Gestión de Entradas en Wordpress
 
   Scenario Outline: Añadir Nueva Entrada.
     Given Usuario con perfil autorizado. Accede al Menú Entradas (Nueva Entrada)
-    When Dentro de la opcion, pulsa y añade los datos de una nueva entrada <img>, <categoria>, <etiqueta>.
+    When Dentro de la opcion, pulsa y añade los datos de una nueva entrada <etiqueta>.
     Then Confirma en la WEB los datos de la nueva entrada añadida.
 
     Examples:
-    |img|categoria|etiqueta|
-    |image1.jpg|CategoriaPadre-18|Etiqueta-1|
-    |image2.jpg|CategoriaHijo-18 |Etiqueta-2|
+    |etiqueta|
+    |Etiqueta-1|
+    |Etiqueta-2|
 
