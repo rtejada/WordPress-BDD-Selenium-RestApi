@@ -2,6 +2,7 @@ from behave import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from lib.pages.login_website import LoginWebsite
+from lib.pages.add_new_page import NewPage
 from dotenv import load_dotenv
 import os
 
@@ -29,25 +30,24 @@ def step_impl(context):
     login.enter_page()
 
 
-@given("Usuario con permisos, accede a todas las páginas\.")
+@given("Usuario con permisos, accede a las páginas\.")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+
+    context.page = NewPage(context.driver)
+    context.page.access_page()
 
 
-@when("En la opcion, pulsa y añade una nueva página\.")
+@when("Dentro de la opcion, pulsa y añade nueva página (?P<titulo>.+)\.")
+def step_impl(context, titulo):
+
+    context.title = context.page.add_new_page(titulo)
+
+
+@then("Confirma el título de la página creada\.")
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
 
-
-@then("Se confirman los datos de la página creada\.")
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+    found = context.page.confirm_data_page(context.title)
+    if found:
+        assert found
+    else:
+        print('pagina hija localizada:', context.title)

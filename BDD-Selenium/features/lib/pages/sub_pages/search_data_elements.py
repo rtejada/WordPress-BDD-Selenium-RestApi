@@ -2,7 +2,7 @@ from lib.pages.base_page import WordPressBasePage
 from selenium.webdriver.common.by import By
 
 
-class Search(WordPressBasePage):
+class SearchDataElements(WordPressBasePage):
 
     visible_selector = ''
     all_entries = ''

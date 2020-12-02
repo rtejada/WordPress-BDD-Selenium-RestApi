@@ -10,7 +10,15 @@ Feature: Gestión de Páginas en Wordpress
     Given Usuario con permisos asignados.
     And Inicia nueva sesion en la web.
 
-  Scenario: Crear Páginas.
-    Given Usuario con permisos, accede a todas las páginas.
-    When En la opcion, pulsa y añade una nueva página.
-    Then Se confirman los datos de la página creada.
+  Scenario Outline: Crear Páginas.
+    Given Usuario con permisos, accede a las páginas.
+    When Dentro de la opcion, pulsa y añade nueva página <titulo>.
+    Then Confirma el título de la página creada.
+
+    Examples:
+    |titulo|
+    |padre|
+    |hijo|
+
+
+

@@ -168,3 +168,4 @@ def retrieve_deleted_page(context):
 def confirm_not_found_after_delete(context):
 
     assert context.code_page_delete == 404
+
