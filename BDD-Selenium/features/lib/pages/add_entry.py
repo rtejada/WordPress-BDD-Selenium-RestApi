@@ -1,6 +1,6 @@
 from lib.pages.base_page import WordPressBasePage
 from selenium.webdriver.common.by import By
-from lib.pages.sub_pages.search import Search
+from lib.pages.sub_pages.search_data_elements import SearchDataElements
 from random import randint
 import os
 
@@ -56,7 +56,7 @@ class CreateEntries(WordPressBasePage):
 
     def confirm_entry_data(self, tag_name):
 
-        search_web = Search(self.driver)
+        search_web = SearchDataElements(self.driver)
         search_web.visible_selector = self.WPBODY_CONTENT
         search_web.all_entries = self.ALL_ENTRIES
         search_web.visible_search = self.WPBODY
