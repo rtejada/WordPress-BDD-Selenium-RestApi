@@ -11,6 +11,10 @@ class SearchByValue(WordPressBasePage):
     row = ''
     column = ''
 
+    def scroll_up(self):
+
+        self.driver.execute_script("window.scrollTo(0, 10);")
+
     def get_value(self, search_item):
 
         self.wait_selector_visible(self.visible_selector)
