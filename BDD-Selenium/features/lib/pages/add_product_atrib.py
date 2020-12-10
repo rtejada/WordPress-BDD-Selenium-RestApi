@@ -43,4 +43,5 @@ class NewProductAttribute(WordPressBasePage):
 
             value = self.driver.find_element(By.XPATH, (self.ROW + 'tr[' + str(a) + ']' + self.COLUMN))
 
-            return value.text == attrib_name
+            if value.text == attrib_name:
+                return True

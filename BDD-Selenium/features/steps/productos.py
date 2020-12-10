@@ -90,7 +90,7 @@ def step_impl(context):
 @then("Confirma los datos del nuevo atributo añadida\.")
 def step_impl(context):
 
-    found = context.attrib.confirm_data_attrib()
+    found = context.attrib.confirm_data_attrib(context.attrib_name)
     assert found
 
 
@@ -103,8 +103,8 @@ def step_impl(context):
 
 @when("En la opcion, pulsa y añade los datos de un nuevo producto\.")
 def step_impl(context):
-
-    context.prod_name = context.prod.add_new_product(context.tag_name)
+    tag_name = 'Eti-ezaTY85FoZ'
+    context.prod_name = context.prod.add_new_product(tag_name)
 
 
 @then("Confirma los datos del nuevo producto añadida\.")
