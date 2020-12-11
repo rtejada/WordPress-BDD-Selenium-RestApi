@@ -50,7 +50,7 @@ class Coupons(WordPressBasePage):
         return title_coupon
 
     def confirm_data_coupons(self, coupon):
-
+        coupon = coupon.lower()
         search_web = SearchDataElements(self.driver)
         search_web.visible_selector = self.COUPONS
         search_web.all_entries = self.COUPONS
