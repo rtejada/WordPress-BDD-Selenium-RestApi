@@ -27,7 +27,7 @@ class SearchDataElements(WordPressBasePage):
 
             value = self.driver.find_element(By.XPATH, (self.row + 'tr[' + str(a) + ']' + self.column))
 
-            if value.text == search_item:
+            if value.text.replace("— ", "") == search_item:
                 return True
             else:
                 return False

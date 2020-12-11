@@ -47,7 +47,4 @@ def step_impl(context, titulo):
 def step_impl(context):
 
     found = context.page.confirm_data_page(context.title)
-    if found:
-        assert found
-    else:
-        print('pagina hija localizada:', context.title)
+    assert found
